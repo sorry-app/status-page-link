@@ -1,0 +1,16 @@
+{
+  "name": "status-page-link",
+  "version": "0.0.0",
+  "description": "Create a simple dynamic link to your Sorry™ Status Page on your website.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sorry-app/status-page-link.git"
+  },
+  "keywords": ["status", "page", "link"],
+  "author": "Robert Rawlins - CTO @ Sorry™",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/sorry-app/status-page-link/issues"
+  },
+  "homepage": "https://github.com/sorry-app/status-page-link"
+}
