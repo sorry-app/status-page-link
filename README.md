@@ -14,6 +14,11 @@ Wherever on the page you'd like to see the dynamic link. You can specify which p
 <a href="https://status-bar-test.sorryapp.com" data-status-link-for="f1ff551f" title="Visit our status page">System Status</a>
 ```
 
+##### Not sure what your Page ID is?
+
+If the address of your status page is ```http://xxxxxx.sorryapp.com``` then ```xxxxxxx``` is what you need to use as the data attribute. This unique ID can also be found in the browsers address bar within the app. ```https://app.sorryapp.com/pages/xxxxx```
+
+
 ### 2. Include the Javascript 
 
 Just before the closing ```</ body>``` tag, this JS will do the clever stuff to transform your basic HTML link above into something more inteligent.
@@ -22,11 +27,15 @@ Just before the closing ```</ body>``` tag, this JS will do the clever stuff to 
 <script src="//code.sorryapp.com/status-page-link/0.latest/status-page-link.min.js"></script>
 ```
 
-#### Not sure what your Page ID is?
+### 3. Include the Icons & CSS
 
-If the address of your status page is ```http://xxxxxx.sorryapp.com``` then ```xxxxxxx``` is what you need to use as the data attribute. This unique ID can also be found in the browsers address bar within the app. ```https://app.sorryapp.com/pages/xxxxx```
+You'll want to include [FontAwsome Icon Fonts](http://fontawesome.io/) on your site to get the icons working. You'll also need to include the following CSS reference for some basic styling.
 
-## Styling The Plugin
+```html
+<link href="//code.sorryapp.com/status-page-link/0.latest/status-page-link.min.css" rel="stylesheet">
+```
+
+## Custom Styling The Plugin
 
 If you want to custom style your widget, you only need create your own CSS. The markup for the widget looks as follows.
 
