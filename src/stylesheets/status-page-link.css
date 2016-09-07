@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+/*
+ * Stylesheet to style the status page link with some sensible defaults
+ * however I imagine people will want to override a bunch of options
+ * themselves with their own CSS.
+ *
+ * Check the README for details of the DOM structure for the link.
+ */
+.status-page-link {}
