@@ -16,6 +16,15 @@ module.exports = function(grunt) {
       all: ['Gruntfile.js', 'src/javascripts/*.js']
     },
 
+    // Release & Deployment Tasks.
+    release: {
+      options: {
+        npm: false, // Don't deploy to NPM as we don't want to release like that.
+        tagName: 'status-page-link-<%= version %>', // TODO: We can't use a variable for the package name.
+        afterBump: ['default'] // Rebuild the libs after version number bumped.
+      }
+    },    
+
     // Minify Stylesheet Assets.
     cssmin: {
       minify: {
@@ -73,6 +82,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   // Load the plugin for minifys CSS.
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  // Release tasks to manage version number bump, tag etc.
+  grunt.loadNpmTasks('grunt-release');  
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin']);

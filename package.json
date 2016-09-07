@@ -25,6 +25,7 @@
     "grunt-contrib-cssmin": "^1.0.2",
     "grunt-browserify": "^5.0.0",
     "jquery": "^1.0.0",
-    "jquery-ajax-transport-xdomainrequest": "^1.0.4"
+    "jquery-ajax-transport-xdomainrequest": "^1.0.4",
+    "grunt-release": "^0.14.0"
   }
 }
