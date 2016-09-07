@@ -1,10 +1,26 @@
 @charset "UTF-8";
 
 /*
- * Stylesheet to style the status page link with some sensible defaults
- * however I imagine people will want to override a bunch of options
- * themselves with their own CSS.
+ * Status Link
+ *
+ * Contextual status page link for use in the footer of the
+ * website, probably to be abstracted out at some point in the
+ * future.
  *
  * Check the README for details of the DOM structure for the link.
  */
-.status-page-link {}
+
+/* Base Link Styles. */
+[data-status-link-for] {
+	line-height: 1.4;
+	text-decoration: none;
+}
+
+/* Current Status Label */
+[data-status-link-for] small {
+	display: block;
+	opacity: 0.65;
+}
+
+/* State Icon. */
+[data-status-link-for] i { margin-right: 0.5rem; }
