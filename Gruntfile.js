@@ -43,7 +43,7 @@ module.exports = function(grunt) {
     // Minify Javascript Assets.
     uglify: {
       build: {
-        src: 'dist/javascripts/<%= pkg.name %>.js', // Take temporary pre-compiled asset.
+        src: 'dist/<%= pkg.name %>.js', // Take temporary pre-compiled asset.
         dest: 'dist/<%= pkg.name %>.min.js' // Plop it in the distribution folder.
       },
       options: {
