@@ -27,10 +27,23 @@ module.exports = function(grunt) {
       }
     },
 
+    // Bundle dependancies into a single package.
+    browserify: {
+      build: {
+        src: 'src/javascripts/<%= pkg.name %>.js', // Take temporary pre-compiled asset.
+        dest: 'dist/<%= pkg.name %>.js', // Plop it in the distribution folder.
+        options: {
+          alias: {
+            'sorry-api': './src/javascripts/lib/sorry-api' // Not available as its own NPM yet.
+          }
+        }
+      }
+    },
+
     // Minify Javascript Assets.
     uglify: {
       build: {
-        src: 'src/javascripts/<%= pkg.name %>.js', // Take temporary pre-compiled asset.
+        src: 'dist/javascripts/<%= pkg.name %>.js', // Take temporary pre-compiled asset.
         dest: 'dist/<%= pkg.name %>.min.js' // Plop it in the distribution folder.
       },
       options: {
@@ -54,12 +67,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   // Connect to the test / demo page.
   grunt.loadNpmTasks('grunt-contrib-connect');
+  // Bundle dependany modules together for distribution.
+  grunt.loadNpmTasks('grunt-browserify');
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
   // Load the plugin for minifys CSS.
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'uglify', 'cssmin']);
+  grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin']);
   
 };

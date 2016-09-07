@@ -22,6 +22,9 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-uglify": "^2.0.0",
-    "grunt-contrib-cssmin": "^1.0.2"
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-browserify": "^5.0.0",
+    "jquery": "^1.0.0",
+    "jquery-ajax-transport-xdomainrequest": "^1.0.4"
   }
 }

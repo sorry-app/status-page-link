@@ -7,6 +7,14 @@
 
 /* Wrap this as a jQuery plugin. */
 (function(window, document, undefined) { "use strict";
-	/* TODO: Add Logic Here. */
-	console.log('Plugin ready to be developed.');
+	/*
+	 * Load in an dependancies required by this plugin.
+	 *
+	 * These are pulled inline by the Browserify package ready for
+	 * distribution, and properly scopes and namespaced for safety.
+	 */
+	// Stripped back jQuery.
+	var $ = require('jquery');
+	// API Wrapper for the Status Page API.
+	var api = require('sorry-api');
 })(window, document);
