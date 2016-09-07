@@ -1,6 +1,6 @@
 # Sorry&#8482; Status Page Link
 
-> A Javascript plugin which creates a dynamic link to your status page, displaying the current state of afairs for your audience to see. As used on our own site [https://www.sorryapp.com](https://www.sorryapp.com)
+> A Javascript plugin which creates a dynamic link to your status page, displaying the current state of affairs for your audience to see. As used on our own site [https://www.sorryapp.com](https://www.sorryapp.com)
 
 ![Alt text](status-page-link.png)
 
@@ -16,12 +16,12 @@ Wherever on the page you'd like to see the dynamic link. You can specify which p
 
 ##### Not sure what your Page ID is?
 
-If the address of your status page is ```http://xxxxxx.sorryapp.com``` then ```xxxxxxx``` is what you need to use as the data attribute. This unique ID can also be found in the browsers address bar within the app. ```https://app.sorryapp.com/pages/xxxxx```
+If the address of your status page is ```http://xxxxxx.sorryapp.com``` then ```xxxxxxx``` is what you need to use as the data attribute. This unique ID can also be found in the browser's address bar within the app. ```https://app.sorryapp.com/pages/xxxxx```
 
 
 ### 2. Include the Javascript 
 
-Just before the closing ```</ body>``` tag, this JS will do the clever stuff to transform your basic HTML link above into something more inteligent.
+Just before the closing ```</ body>``` tag, this JS will do the clever stuff to transform your basic HTML link above into something more intelligent.
 
 ```html
 <script src="//code.sorryapp.com/status-page-link/0.latest/status-page-link.min.js"></script>
