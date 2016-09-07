@@ -19,7 +19,7 @@ Wherever on the page you'd like to see the dynamic link. You can specify which p
 Just before the closing ```</ body>``` tag, this JS will do the clever stuff to transform your basic HTML link above into something more inteligent.
 
 ```html
-<script src="//code.sorryapp.com/status-page-link/1.latest/status-page-link.min.js"></script>
+<script src="//code.sorryapp.com/status-page-link/0.latest/status-page-link.min.js"></script>
 ```
 
 #### Not sure what your Page ID is?
