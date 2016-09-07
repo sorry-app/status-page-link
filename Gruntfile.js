@@ -5,6 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Default package configuration.
     pkg: grunt.file.readJSON('package.json'),
+    aws: grunt.file.readJSON('aws.json'),
 
     // Define a banner to added to the compiled assets.
     banner: "/* <%= pkg.name %> v<%= pkg.version %> | " +
@@ -70,6 +71,27 @@ module.exports = function(grunt) {
         }
       }
     },
+
+    // Deployment.
+    aws_s3: {
+      options: {
+        accessKeyId: '<%= aws.key %>', // Use the variables
+        secretAccessKey: '<%= aws.secret %>', // You can also use env variables
+        region: 'eu-west-1',
+        bucket: 'sorry-assets-production',
+        access: 'public-read'
+      },
+      dev: {
+        files: [
+          // Upload this version of the plugin.
+          {expand: true, cwd: 'dist/', src: ['**'], dest: '<%= pkg.name %>/<%= pkg.version %>/'},
+          // Also deploy a bleeding edge version on the major number.
+          {expand: true, cwd: 'dist/', src: ['**'], dest: '<%= pkg.name %>/<%= pkg.version.split(".")[0] %>.latest/'},
+          // And also a bleeding edge minor release.
+          {expand: true, cwd: 'dist/', src: ['**'], dest: '<%= pkg.name %>/<%= pkg.version.split(".")[0] %>.<%= pkg.version.split(".")[1] %>.latest/'}
+        ]
+      }
+    }    
   });
 
   // Load the plugin that validates the JS markup.
@@ -83,7 +105,9 @@ module.exports = function(grunt) {
   // Load the plugin for minifys CSS.
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   // Release tasks to manage version number bump, tag etc.
-  grunt.loadNpmTasks('grunt-release');  
+  grunt.loadNpmTasks('grunt-release');
+  // AWS/S3 deployment tools.
+  grunt.loadNpmTasks('grunt-aws-s3');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'browserify', 'uglify', 'cssmin']);
