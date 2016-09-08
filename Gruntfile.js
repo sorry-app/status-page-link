@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Default package configuration.
     pkg: grunt.file.readJSON('package.json'),
-    // aws: grunt.file.readJSON('aws.json'),
+    aws: grunt.file.exists('aws.json') ? grunt.file.readJSON('aws.json') : {}, // Optional file required for deployment.
 
     // Define a banner to added to the compiled assets.
     banner: "/* <%= pkg.name %> v<%= pkg.version %> | " +
