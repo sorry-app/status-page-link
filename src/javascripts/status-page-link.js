@@ -74,13 +74,18 @@
 		// Request the page data from the API.
 		// INFO: We pipe the status-bar-for value to support formats on various jQuery versions.
 		//       The first is latter versions of jQuery, the second is earlier vertions.		
-		self.api.fetchPage((self.options.statusLinkFor || self.options['status-link-for']), function(response) {
-			// See if we have any open notices.
-			// Filter notices to give us only open ones for display.
-			var $open_notices = $.grep(response.response.notices, function(a) { return a.state == 'open'; });
-
+		self.api.fetchPage((self.options.statusLinkFor || self.options['status-link-for']), 
+			// Include the notices, as if we have some
+			// We'll display a different state.
+			['notices'],
+		{ 
+			// We only need to check for present notices.
+			'notices': {
+				'timeline_state_eq': 'present'
+			}
+		}, function(response) {
 			// Change the state depending on whether we have any open notices.
-			if ($open_notices.length) {
+			if (response.response.notices.length) {
 				// We have open notices, display state.
 				self.render('ongoing');
 			} else {

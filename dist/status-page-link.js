@@ -11093,13 +11093,18 @@ return jQuery;
 		// Request the page data from the API.
 		// INFO: We pipe the status-bar-for value to support formats on various jQuery versions.
 		//       The first is latter versions of jQuery, the second is earlier vertions.		
-		self.api.fetchPage((self.options.statusLinkFor || self.options['status-link-for']), function(response) {
-			// See if we have any open notices.
-			// Filter notices to give us only open ones for display.
-			var $open_notices = $.grep(response.response.notices, function(a) { return a.state == 'open'; });
-
+		self.api.fetchPage((self.options.statusLinkFor || self.options['status-link-for']), 
+			// Include the notices, as if we have some
+			// We'll display a different state.
+			['notices'],
+		{ 
+			// We only need to check for present notices.
+			'notices': {
+				'timeline_state_eq': 'present'
+			}
+		}, function(response) {
 			// Change the state depending on whether we have any open notices.
-			if ($open_notices.length) {
+			if (response.response.notices.length) {
 				// We have open notices, display state.
 				self.render('ongoing');
 			} else {
@@ -11187,6 +11192,7 @@ return jQuery;
 	 * These are pulled inline by the Browserify package ready for
 	 * distribution, and properly scopes and namespaced for safety.
 	 */
+	// Cross-Domain AJAX Support for jQuery in IE 8/9.
 	var $ = require('jquery');
 	// Cross-Domain AJAX Support for jQuery in IE 8/9.
 	var legacy_cors_support = require('jquery-ajax-transport-xdomainrequest');
@@ -11228,7 +11234,7 @@ return jQuery;
 	};
 
 	// TODO: Add support for success/fail behaviour.
-	SorryAPI.prototype.fetchPage = function(page_id, callback) {
+	SorryAPI.prototype.fetchPage = function(page_id, includes, filters, callback) {
 		// Reference self again.
 		var self = this;
 
@@ -11241,10 +11247,15 @@ return jQuery;
 			crossDomain: true, 
 			dataType: "json",
 			url: target_url,
+			// Set headers using beforeSend as headers: isn't supported in older jQuery.
+			beforeSend: function(xhr) { xhr.setRequestHeader('X-Plugin-Ping', 'status-bar'); },
+			// Request some additional parameters, and pass subscriber data.
 			data: { 
-				include: 'notices', // Get brand and notices in a sigle package.
+				include: includes.join(','), // Get brand and notices in a single package.
+				filter: filters, // Include filters on the request.
 				subscriber: self.options.subscriber // Pass optional subscriber configured in the client.
 			},
+			// Handle the response after JSON returned.
 			success: callback
 		});
 	};
