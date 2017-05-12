@@ -8,6 +8,7 @@
 	 * These are pulled inline by the Browserify package ready for
 	 * distribution, and properly scopes and namespaced for safety.
 	 */
+	// Cross-Domain AJAX Support for jQuery in IE 8/9.
 	var $ = require('jquery');
 	// Cross-Domain AJAX Support for jQuery in IE 8/9.
 	var legacy_cors_support = require('jquery-ajax-transport-xdomainrequest');
@@ -49,7 +50,7 @@
 	};
 
 	// TODO: Add support for success/fail behaviour.
-	SorryAPI.prototype.fetchPage = function(page_id, callback) {
+	SorryAPI.prototype.fetchPage = function(page_id, includes, filters, callback) {
 		// Reference self again.
 		var self = this;
 
@@ -62,10 +63,15 @@
 			crossDomain: true, 
 			dataType: "json",
 			url: target_url,
+			// Set headers using beforeSend as headers: isn't supported in older jQuery.
+			beforeSend: function(xhr) { xhr.setRequestHeader('X-Plugin-Ping', 'status-bar'); },
+			// Request some additional parameters, and pass subscriber data.
 			data: { 
-				include: 'notices', // Get brand and notices in a sigle package.
+				include: includes.join(','), // Get brand and notices in a single package.
+				filter: filters, // Include filters on the request.
 				subscriber: self.options.subscriber // Pass optional subscriber configured in the client.
 			},
+			// Handle the response after JSON returned.
 			success: callback
 		});
 	};
