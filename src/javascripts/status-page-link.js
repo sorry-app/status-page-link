@@ -43,7 +43,7 @@
 
 		// Define the template for the link.
 		self.template = '\
-			<small>Current Status:</small> \
+			<small>' + (self.options.textSmall || 'Current Status:') + '</small> \
 			<i class="{{state-icon-class}}" aria-hidden="true"></i>{{state-message}}\
 		';
 
@@ -51,15 +51,15 @@
 		self.states = {
 			'loading': {
 				'icon-class': 'fa fa-circle-o-notch fa-spin',
-				'message': 'Checking status...'
+				'message': self.options.messageChecking || 'Checking status...'
 			},
 			'ongoing': {
 				'icon-class': 'fa fa-times-circle-o',
-				'message': 'We are having issues at the moment'
+				'message': self.options.messageBad || 'We are having issues at the moment'
 			},
 			'all-is-well': {
 				'icon-class': 'fa fa-check-circle-o',
-				'message': 'All systems are go'
+				'message': self.options.messageGood || 'All systems are go'
 			}
 		};
 	};

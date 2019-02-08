@@ -35,6 +35,15 @@ You'll want to include [FontAwsome Icon Fonts](http://fontawesome.io/) on your s
 <link href="//code.sorryapp.com/status-page-link/0.latest/status-page-link.min.css" rel="stylesheet">
 ```
 
+### 4. Customizing texts
+
+All the messages and texts can be customized through following data attributes
+
+* [data-text-small] - small text infront of message, default [Current Status:]
+* [data-message-checking] - message during checking status, default [Checking status...]
+* [data-message-Bad] - message if ongoing issues found, default [We are having issues at the moment]
+* [data-message-Good] - message if everything is operational, default [All systems are go]
+
 ## Custom Styling The Plugin
 
 If you want to custom style your widget, you only need create your own CSS. The markup for the widget looks as follows.
@@ -57,7 +66,7 @@ This project uses Grunt with convenient methods for working with the project. It
 From the command line:
 
 1. Install `grunt-cli` globally with `npm install -g grunt-cli`.
-2. Navigate to the root `/sorry-announce` directory, then run `npm install`. npm will look at [package.json](package.json) and automatically install the necessary local dependencies listed there.
+2. Navigate to the root `/sorry-page-link` directory, then run `npm install`. npm will look at [package.json](package.json) and automatically install the necessary local dependencies listed there.
 
 When completed, you'll be able to run the various Grunt commands provided from the command line.
 
