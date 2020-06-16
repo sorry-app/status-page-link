@@ -24,7 +24,7 @@
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-cssmin": "^1.0.2",
     "grunt-browserify": "^5.0.0",
-    "jquery": "^1.0.0",
+    "jquery": "^3.5.1",
     "jquery-ajax-transport-xdomainrequest": "^1.0.4",
     "grunt-release": "^0.14.0",
     "grunt-aws-s3": "^0.14.5"
