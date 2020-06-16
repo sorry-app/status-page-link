@@ -84,11 +84,11 @@ module.exports = function(grunt) {
       dev: {
         files: [
           // Upload this version of the plugin.
-          {expand: true, cwd: 'dist/', src: ['**'], dest: '<%= pkg.name %>/<%= pkg.version %>/'},
+          {expand: true, cwd: 'dist/', src: ['**'], dest: '<%= pkg.name %>/<%= pkg.version %>/', params: { CacheControl: 'public, max-age=31536000' }},
           // Also deploy a bleeding edge version on the major number.
-          {expand: true, cwd: 'dist/', src: ['**'], dest: '<%= pkg.name %>/<%= pkg.version.split(".")[0] %>.latest/'},
+          {expand: true, cwd: 'dist/', src: ['**'], dest: '<%= pkg.name %>/<%= pkg.version.split(".")[0] %>.latest/', params: { CacheControl: 'public, max-age=3600' }},
           // And also a bleeding edge minor release.
-          {expand: true, cwd: 'dist/', src: ['**'], dest: '<%= pkg.name %>/<%= pkg.version.split(".")[0] %>.<%= pkg.version.split(".")[1] %>.latest/'}
+          {expand: true, cwd: 'dist/', src: ['**'], dest: '<%= pkg.name %>/<%= pkg.version.split(".")[0] %>.<%= pkg.version.split(".")[1] %>.latest/', params: { CacheControl: 'public, max-age=3600' }}
         ]
       }
     }    
